@@ -29,6 +29,22 @@ namespace WordSearcher
             }
         }
 
+
+        private List<string> _savedKeyWords = new List<string>();
+        public List<string> SavedKeyWords 
+        {
+            get 
+            {
+                return _savedKeyWords;
+            }
+            set
+            {
+                _savedKeyWords = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+
         private string _query;
         public string Query
         {
@@ -63,7 +79,6 @@ namespace WordSearcher
             get
             {
                 return _searchCommand ?? (_searchCommand = new MyCommand(OnNewSearchCommand));
-                //return _loadData ?? (_loadData = new BasicCommand(OnLoad, CanLoad));
             }
         }
 
@@ -73,6 +88,7 @@ namespace WordSearcher
             int count =  0;
             if (!(String.IsNullOrEmpty(Query)) && !(String.IsNullOrEmpty(Content)))
             {
+                SavedKeyWords.Add(Content);
                 string[] split = Content.Split(new Char [] { ' ', '\t', '\n' });
                 foreach (string s in split)
                 {
