@@ -73,12 +73,27 @@ namespace WordSearcher
             }
         }
 
+        Func<bool> _canExecute;
+        public Func<bool> CanExecute
+        {
+            get 
+            {
+                return _canExecute;
+            }
+            set 
+            {
+                _canExecute = value;
+                NotifyPropertyChanged();
+            }
+        }
+
+
         private MyCommand _searchCommand;
         public System.Windows.Input.ICommand SearchCommand
         {
             get
             {
-                return _searchCommand ?? (_searchCommand = new MyCommand(OnNewSearchCommand));
+                return _searchCommand ?? (_searchCommand = new MyCommand(OnNewSearchCommand, CanExecute));
             }
         }
 
