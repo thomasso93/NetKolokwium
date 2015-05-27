@@ -4,7 +4,7 @@ namespace WordSearcher
     /// <summary>
     /// Base class for all types of searches
     /// </summary>
-    public class ASearcher
+    public abstract class ASearcher
     {
         public string Query { get; set; }
 

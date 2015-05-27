@@ -70,9 +70,20 @@ namespace WordSearcher
         private Action OnNewSearchCommand;
         private void onNewSearchCommand() 
         {
+            int count =  0;
             if (!(String.IsNullOrEmpty(Query)) && !(String.IsNullOrEmpty(Content)))
             {
- 
+                string[] split = Content.Split(new Char [] { ' ', '\t', '\n' });
+                foreach (string s in split)
+                {
+                    if (SelectedMethod.VerifyText(s))
+                        count++;
+                }
+                if (count > 0)
+                    SearchResult = "RESULTS FOUND: " + count;
+                else
+                    SearchResult = Globals.NoSearchResults;
+                
             }
         }
 
