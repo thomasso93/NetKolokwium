@@ -62,7 +62,17 @@ namespace WordSearcher
         {
             get
             {
-                return _searchCommand;
+                return _searchCommand ?? (_searchCommand = new MyCommand(OnNewSearchCommand));
+                //return _loadData ?? (_loadData = new BasicCommand(OnLoad, CanLoad));
+            }
+        }
+
+        private Action OnNewSearchCommand;
+        private void onNewSearchCommand() 
+        {
+            if (!(String.IsNullOrEmpty(Query)) && !(String.IsNullOrEmpty(Content)))
+            {
+ 
             }
         }
 
